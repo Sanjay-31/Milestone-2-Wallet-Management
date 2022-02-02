@@ -1,12 +1,7 @@
 package com.walletdemo.walletdemoproject.Entity;
 
-
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Getter
@@ -19,6 +14,8 @@ public class WalletEntity {
     private String phoneNumber;
     private  Double accountBalance;
     private String status="Active";
+    private String password;
+    private String date;
 
 
     public WalletEntity()
@@ -28,6 +25,11 @@ public class WalletEntity {
     public Double getAccountBalance() {
         return accountBalance;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
 
     public String  getPhoneNumber() {
         return phoneNumber;
@@ -45,7 +47,8 @@ public class WalletEntity {
         this.status = status;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

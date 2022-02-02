@@ -23,6 +23,8 @@ public class TransactionEntity {
     private String toaccount;
     @Column(name = "amount")
     private Double amount;
+//    private String date;
+
     public TransactionEntity()
     {
 

@@ -25,25 +25,25 @@ public class TransactionController {
     @Autowired
     private TransactionRepo transactionRepo;
 
-     TransactionResponse transactionResponse=new TransactionResponse();
-
+    TransactionResponse transactionResponse=new TransactionResponse();
 
 
     @GetMapping("/transaction")
     public List<TransactionEntity> getAllTransaction() {
         return transactionService.get();
     }
-    @GetMapping("/transaction/{phoneNumber}")
+
+    @GetMapping("/getbynumber/{phoneNumber}")
     public ResponseEntity<Object> getTransaction(@PathVariable String phoneNumber)
     {
+
          List<TransactionData> t=transactionService.getData(phoneNumber);
          if(walletService.checkUserExist(phoneNumber))
          {
-             return transactionResponse.getResponse(t,"Retrieval of Data is successfull");
+             return transactionResponse.getResponse(t,"Retrieval of Data is successful");
          }
         return transactionResponse.getResponse(t,"Unsuccessful, User does not exist");
     }
-
 
     @PostMapping("/transaction")
     public ResponseEntity<Object> createTransaction(@RequestBody TransactionEntity t) {
@@ -59,7 +59,7 @@ public class TransactionController {
                 return transactionResponse.getPostResponse(t,"Transaction Unsuccessful,Insufficient Balance");
             }
            transactionService.createtransaction(t);
-           return transactionResponse.getPostResponse(t,"Transaction is Successful");
+           return transactionResponse.getPostResponse(t,"Transaction was Successful");
         }
         else  return transactionResponse.getPostResponse(t,"Transaction Unsuccessful,User does not exist");
     }

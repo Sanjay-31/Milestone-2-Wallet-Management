@@ -14,5 +14,5 @@ import java.util.Optional;
 import java.util.function.Function;
 
 public interface WalletRepo extends JpaRepository<WalletEntity, String> {
-
+    public  WalletEntity getByPhoneNumber(String s);
 }
