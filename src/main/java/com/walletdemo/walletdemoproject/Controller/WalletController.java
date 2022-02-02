@@ -25,6 +25,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+//jwt updated
+
 @RestController
 public class WalletController {
 
@@ -52,8 +55,6 @@ public class WalletController {
     public ResponseEntity<?>  getToken(@RequestBody UserRequest user)
     {
         Map<String,String>map=new HashMap<String,String>();
-//        map.put("JWT Token :",token);
-//        return new ResponseEntity<>(map, HttpStatus.OK);
         try {
             authenticationManager.
                     authenticate(new UsernamePasswordAuthenticationToken(user.getPhoneNumber(),user.getPassword()));
@@ -68,25 +69,11 @@ public class WalletController {
        String token = jwtUtil.generateToken(userDetails);
        map.put("JWT token : ",token);
         return new ResponseEntity<>(map, HttpStatus.OK);
-//        Map<String,String>map=new HashMap<String,String>();
-//        map.put("JWT Token :",token);
-//        return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
     @PostMapping("/register")
     public ResponseEntity<Object> createWallet(@RequestBody WalletEntity ww)
     {
-//        try {
-//            authenticationManager.
-//                    authenticate(new UsernamePasswordAuthenticationToken(ww.getPhoneNumber(),ww.getPassword()));
-//        }
-//        catch (BadCredentialsException e)
-//        {
-//            return walletResponse.getResponse(ww,"bad credential buddy");
-//        }
-//        final UserDetails userDetails=myUserDetailsService.loadUserByUsername(ww.getPhoneNumber());
-//        String token= jwtUtil.generateToken(userDetails);
-
         if(walletService.checkUserExist(ww.getPhoneNumber()))
             return walletResponse.getResponse(ww,"User Already Exist");
         else
