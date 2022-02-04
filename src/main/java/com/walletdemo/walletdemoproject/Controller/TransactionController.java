@@ -33,7 +33,7 @@ public class TransactionController {
         return transactionService.get();
     }
 
-    @GetMapping("/getbynumber/{phoneNumber}")
+    @GetMapping("/transaction/{phoneNumber}")
     public ResponseEntity<Object> getTransaction(@PathVariable String phoneNumber)
     {
 

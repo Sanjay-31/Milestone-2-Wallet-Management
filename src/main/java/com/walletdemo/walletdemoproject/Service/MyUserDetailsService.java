@@ -19,11 +19,10 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//         return new User("foo", "boo", new ArrayList<>());
         WalletEntity w=walletRepo.getByPhoneNumber(username);
         if(!walletRepo.existsById(username))
         {
-            throw new UsernameNotFoundException("user Not found bro");
+            throw new UsernameNotFoundException("User Not found");
         }
         else
         {

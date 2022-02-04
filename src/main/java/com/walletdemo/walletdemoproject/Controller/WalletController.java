@@ -48,7 +48,7 @@ public class WalletController {
     @GetMapping("/wallet")
     public List<WalletEntity> getAllData()
     {
-     return walletRepo.findAll();
+     return walletService.getAll();
     }
 
     @PostMapping("/token")

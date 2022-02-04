@@ -5,16 +5,22 @@ import com.walletdemo.walletdemoproject.Repository.WalletRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class WalletService {
 
     @Autowired
     WalletRepo walletRepo;
 
+    public List<WalletEntity> getAll() {
+        return walletRepo.findAll();
+    }
+
     public WalletEntity addWallet(WalletEntity w)
     {
-        walletRepo.save(w);
-        return w;
+        return walletRepo.save(w);
+//        return w;
     }
 
     public WalletEntity get(String phoneNumber) {
@@ -26,8 +32,8 @@ public class WalletService {
         walletRepo.save(w);
     }
 
-    public boolean checkUserExist(String number) {
-        if(walletRepo.existsById(number))
+    public boolean checkUserExist(String phoneNumber) {
+        if(walletRepo.existsById(phoneNumber))
             return true;
         return  false;
     }
@@ -44,4 +50,6 @@ public class WalletService {
         WalletEntity w=walletRepo.findById(number).get();
     return (w.getAccountBalance()<amount);
     }
+
+
 }

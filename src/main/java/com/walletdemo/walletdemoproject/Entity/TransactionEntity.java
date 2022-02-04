@@ -11,7 +11,6 @@ import javax.persistence.*;
 @Setter
 @Table(name = "TransactionData")
 public class TransactionEntity {
-//
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "transaction_id")
@@ -23,11 +22,17 @@ public class TransactionEntity {
     private String toaccount;
     @Column(name = "amount")
     private Double amount;
-//    private String date;
 
     public TransactionEntity()
     {
 
+    }
+
+    public TransactionEntity(long transaction_id, String fromaccount, String toaccount, Double amount) {
+        this.transaction_id = transaction_id;
+        this.fromaccount = fromaccount;
+        this.toaccount = toaccount;
+        this.amount = amount;
     }
 
     public Double getAmount() {

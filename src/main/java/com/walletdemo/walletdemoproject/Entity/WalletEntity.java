@@ -22,6 +22,14 @@ public class WalletEntity {
     {
 
     }
+
+    public WalletEntity(String phoneNumber, Double accountBalance, String status, String password, String date) {
+        this.phoneNumber = phoneNumber;
+        this.accountBalance = accountBalance;
+        this.status = status;
+        this.password = password;
+        this.date = date;
+    }
     public Double getAccountBalance() {
         return accountBalance;
     }
