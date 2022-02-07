@@ -1,5 +1,6 @@
 package com.walletdemo.walletdemoproject.Controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.walletdemo.walletdemoproject.Entity.TransactionData;
 import com.walletdemo.walletdemoproject.Entity.TransactionEntity;
 import com.walletdemo.walletdemoproject.Repository.TransactionRepo;
@@ -17,7 +18,9 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -83,19 +86,24 @@ public class TransactionControllerTest {
    }
 
    @Test
-   @Disabled
     void createTransaction() throws Exception {
 
        Mockito.when(walletService.checkUserExist(any())).thenReturn(true);
        Mockito.when(walletService.checkforcurrentinactive(any(),any())).thenReturn(false);
        Mockito.when(walletService.sufficientbalance(any(),any())).thenReturn(false);
-
-//       ResponseEntity<Object>res=transactionController.createTransaction(t1);
-//       assertEquals(HttpStatus.CREATED,res.getStatusCode());
        mockMvc.perform(
                MockMvcRequestBuilders.post("/transaction")
-               .with(csrf())
+                       .contentType(MediaType.APPLICATION_JSON)
+                       .content(asJsonString(t1))
        )
                .andExpect(status().isCreated());
    }
+    public static String asJsonString(final Object obj)
+    {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

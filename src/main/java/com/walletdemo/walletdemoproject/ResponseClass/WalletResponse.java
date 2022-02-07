@@ -9,11 +9,12 @@ import java.util.Map;
 
 public class WalletResponse {
 
-    public ResponseEntity<Object> getResponse(WalletEntity w,String message)
+    public ResponseEntity<Object> getResponse(WalletEntity w,String message,HttpStatus httpStatus)
     {
         Map<String,Object> map=new HashMap<String,Object>();
         map.put("status",message);
         map.put("WalletData",w);
-        return new ResponseEntity<>(map, HttpStatus.OK);
+        map.put("status",httpStatus);
+        return new ResponseEntity<Object>(map,httpStatus);
     }
 }

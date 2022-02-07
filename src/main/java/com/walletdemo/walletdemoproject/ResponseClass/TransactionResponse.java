@@ -19,11 +19,12 @@ public class TransactionResponse {
         map.put("Status",message);
         return new ResponseEntity<Object>(map,HttpStatus.OK);
     }
-    public ResponseEntity<Object> getPostResponse(TransactionEntity t, String message)
+    public ResponseEntity<Object> getPostResponse(TransactionEntity t, String message,HttpStatus httpStatus)
     {
         Map<String,Object> map=new HashMap<>();
         map.put("Transactions",t);
         map.put("Status",message);
-        return new ResponseEntity<Object>(map,HttpStatus.CREATED);
+        map.put("Status",httpStatus);
+        return new ResponseEntity<Object>(map,httpStatus);
     }
 }

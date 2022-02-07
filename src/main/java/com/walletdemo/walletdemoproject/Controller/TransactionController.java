@@ -52,15 +52,15 @@ public class TransactionController {
         {
             if(walletService.checkforcurrentinactive(t.getToaccount(),t.getFromaccount()))
             {
-                return transactionResponse.getPostResponse(t,"Transaction Unsuccessful,User is not Active");
+                return transactionResponse.getPostResponse(t,"Transaction Unsuccessful,User is not Active",HttpStatus.NOT_FOUND);
             }
             else if(walletService.sufficientbalance(t.getFromaccount(),t.getAmount()))
             {
-                return transactionResponse.getPostResponse(t,"Transaction Unsuccessful,Insufficient Balance");
+                return transactionResponse.getPostResponse(t,"Transaction Unsuccessful,Insufficient Balance",HttpStatus.BAD_REQUEST);
             }
            transactionService.createtransaction(t);
-           return transactionResponse.getPostResponse(t,"Transaction was Successful");
+           return transactionResponse.getPostResponse(t,"Transaction was Successful",HttpStatus.CREATED);
         }
-        else  return transactionResponse.getPostResponse(t,"Transaction Unsuccessful,User does not exist");
+        else  return transactionResponse.getPostResponse(t,"Transaction Unsuccessful,User does not exist",HttpStatus.NOT_FOUND);
     }
 }

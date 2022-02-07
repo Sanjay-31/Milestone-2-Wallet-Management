@@ -21,9 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
-//jwt updated
-
 @RestController
 public class WalletController {
 
@@ -48,7 +45,7 @@ public class WalletController {
     }
 
     @PostMapping("/token")
-    public ResponseEntity<?>  getToken(@RequestBody UserRequest user)
+    public ResponseEntity<Object>  getToken(@RequestBody UserRequest user)
     {
         Map<String,String>map=new HashMap<String,String>();
         try {
@@ -57,43 +54,33 @@ public class WalletController {
         }
         catch (BadCredentialsException e)
         {
-//            return walletResponse.getResponse(user,"bad credential buddy");
            map.put("Error Message :","User with this password does not exist");
-           return new ResponseEntity<>(map,HttpStatus.NOT_FOUND);
+           return new ResponseEntity<>(map,HttpStatus.MULTI_STATUS);
         }
         final UserDetails userDetails=myUserDetailsService.loadUserByUsername(user.getPhoneNumber());
        String token = jwtUtil.generateToken(userDetails);
-       return new ResponseEntity<>(token,HttpStatus.FOUND);
-//       map.put("JWT token : ",token);
-//        return new ResponseEntity<>(map, HttpStatus.OK);
+       map.put("JWT_token : ",token);
+        return new ResponseEntity<>(map, HttpStatus.FOUND);
     }
     @PostMapping("/register")
     public ResponseEntity<Object> createWallet(@RequestBody WalletEntity ww)
     {
-//        System.out.println("Yoo");
         if(walletService.checkUserByWallet(ww))
         {
-//            System.out.println("Ye chla");
-//            return new ResponseEntity<>(ww,HttpStatus.FOUND);
-
-            return walletResponse.getResponse(ww,"User Already Exist");
-
+            return walletResponse.getResponse(ww,"User with same credentials is already present",HttpStatus.MULTI_STATUS);
         }
         else
         {
-//            String date=dateResponse.getCurrentDateTime();
-//            ww.setDate(date);
+            String date=dateResponse.getCurrentDateTime();
+            ww.setDate(date);
             walletService.addWallet(ww);
-             return new ResponseEntity<>(ww,HttpStatus.CREATED);
-//            return walletResponse.getResponse(ww,"Wallet Created Successfully ");
+            return walletResponse.getResponse(ww,"Wallet Created Successfully ",HttpStatus.CREATED);
         }
     }
     @DeleteMapping("/wallet/{phoneNumber}")
     public ResponseEntity<Object> delete(@PathVariable String phoneNumber) {
         WalletEntity w = walletService.get(phoneNumber);
         walletService.update(w);
-//        w.setStatus("Inactive");
-//        walletService.addWallet()
-        return walletResponse.getResponse(w, "Successfully Logged Out");
+        return walletResponse.getResponse(w, "Successfully Logged Out",HttpStatus.OK);
     }
 }
