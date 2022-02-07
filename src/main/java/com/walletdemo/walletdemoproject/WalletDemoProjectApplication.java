@@ -17,5 +17,4 @@ public class WalletDemoProjectApplication {
 		SpringApplication.run(WalletDemoProjectApplication.class, args);
 
 	}
-
 }

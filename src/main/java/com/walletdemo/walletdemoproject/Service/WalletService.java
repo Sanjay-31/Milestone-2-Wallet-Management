@@ -37,6 +37,11 @@ public class WalletService {
             return true;
         return  false;
     }
+    public boolean checkUserByWallet(WalletEntity w) {
+        if(walletRepo.existsById(w.getPhoneNumber()))
+            return true;
+        return  false;
+    }
 
     public boolean checkforcurrentinactive(String toaccount, String fromaccount) {
         if(walletRepo.findById(toaccount).get().getStatus().equals("Inactive")

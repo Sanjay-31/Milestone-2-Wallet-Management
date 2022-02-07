@@ -12,8 +12,6 @@ public class TransactionData {
     //for debit and credit
     private String message;
 
-
-
     public Double getTransaction_amount() {
         return transaction_amount;
     }

@@ -16,6 +16,4 @@ public class WalletResponse {
         map.put("WalletData",w);
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
-
-
 }

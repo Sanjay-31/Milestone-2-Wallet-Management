@@ -9,10 +9,14 @@ public class UserRequest {
 
     }
 
+    public UserRequest(String phoneNumber, String password) {
+        this.phoneNumber = phoneNumber;
+        this.password = password;
+    }
+
     public String getPassword() {
         return password;
     }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }

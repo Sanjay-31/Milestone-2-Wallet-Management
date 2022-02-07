@@ -15,12 +15,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,9 +42,9 @@ public class WalletController {
     DateResponse dateResponse=new DateResponse();
     WalletResponse walletResponse=new WalletResponse();
     @GetMapping("/wallet")
-    public List<WalletEntity> getAllData()
+    public ResponseEntity<List<WalletEntity>> getAllData()
     {
-     return walletService.getAll();
+     return new ResponseEntity<>(walletService.getAll(),HttpStatus.FOUND);
     }
 
     @PostMapping("/token")
@@ -67,21 +63,29 @@ public class WalletController {
         }
         final UserDetails userDetails=myUserDetailsService.loadUserByUsername(user.getPhoneNumber());
        String token = jwtUtil.generateToken(userDetails);
-       map.put("JWT token : ",token);
-        return new ResponseEntity<>(map, HttpStatus.OK);
+       return new ResponseEntity<>(token,HttpStatus.FOUND);
+//       map.put("JWT token : ",token);
+//        return new ResponseEntity<>(map, HttpStatus.OK);
     }
-
     @PostMapping("/register")
     public ResponseEntity<Object> createWallet(@RequestBody WalletEntity ww)
     {
-        if(walletService.checkUserExist(ww.getPhoneNumber()))
+//        System.out.println("Yoo");
+        if(walletService.checkUserByWallet(ww))
+        {
+//            System.out.println("Ye chla");
+//            return new ResponseEntity<>(ww,HttpStatus.FOUND);
+
             return walletResponse.getResponse(ww,"User Already Exist");
+
+        }
         else
         {
-            String date=dateResponse.getCurrentDateTime();
-            ww.setDate(date);
+//            String date=dateResponse.getCurrentDateTime();
+//            ww.setDate(date);
             walletService.addWallet(ww);
-            return walletResponse.getResponse(ww,"Wallet Created Successfully at "+date);
+             return new ResponseEntity<>(ww,HttpStatus.CREATED);
+//            return walletResponse.getResponse(ww,"Wallet Created Successfully ");
         }
     }
     @DeleteMapping("/wallet/{phoneNumber}")

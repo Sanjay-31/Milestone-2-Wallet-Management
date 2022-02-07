@@ -8,6 +8,7 @@ import com.walletdemo.walletdemoproject.ResponseClass.TransactionResponse;
 import com.walletdemo.walletdemoproject.Service.TransactionService;
 import com.walletdemo.walletdemoproject.Service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,14 +30,13 @@ public class TransactionController {
 
 
     @GetMapping("/transaction")
-    public List<TransactionEntity> getAllTransaction() {
-        return transactionService.get();
+    public ResponseEntity<List<TransactionEntity>> getAllTransaction() {
+        return new ResponseEntity<>(transactionService.get(), HttpStatus.OK);
     }
 
     @GetMapping("/transaction/{phoneNumber}")
     public ResponseEntity<Object> getTransaction(@PathVariable String phoneNumber)
     {
-
          List<TransactionData> t=transactionService.getData(phoneNumber);
          if(walletService.checkUserExist(phoneNumber))
          {
