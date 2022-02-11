@@ -2,6 +2,7 @@ package com.walletdemo.walletdemoproject.Entity;
 
 import lombok.*;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -17,6 +18,10 @@ public class WalletEntity {
     private String password;
     private String date;
 
+    @OneToMany(mappedBy = "from")
+    private List<TransactionEntity>fromlist;
+    @OneToMany(mappedBy = "to")
+    private List<TransactionEntity>tolist;
 
     public WalletEntity()
     {

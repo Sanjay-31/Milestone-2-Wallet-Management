@@ -47,6 +47,12 @@ public class WalletController {
      return new ResponseEntity<>(map,HttpStatus.FOUND);
     }
 
+    @GetMapping("wallet/{number}")
+    public WalletEntity getSingleWallet(@PathVariable String number)
+    {
+        return walletService.get(number);
+    }
+
     @PostMapping("/token")
     public ResponseEntity<Object> getToken(@RequestBody UserRequest user)
     {

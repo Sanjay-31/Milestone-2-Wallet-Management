@@ -2,6 +2,7 @@ package com.walletdemo.walletdemoproject.Controller;
 
 
 import com.walletdemo.walletdemoproject.Entity.TransactionEntity;
+import com.walletdemo.walletdemoproject.Entity.WalletEntity;
 import com.walletdemo.walletdemoproject.Repository.TransactionRepo;
 import com.walletdemo.walletdemoproject.Entity.TransactionData;
 import com.walletdemo.walletdemoproject.ResponseClass.TransactionResponse;
@@ -38,16 +39,16 @@ public class TransactionController {
         return new ResponseEntity<>(transactionService.get(), HttpStatus.OK);
     }
 
-    @GetMapping("/transaction/{phoneNumber}")
-    public ResponseEntity<Object> getTransaction(@PathVariable String phoneNumber)
-    {
-         List<TransactionData> t=transactionService.getData(phoneNumber);
-         if(walletService.checkUserExist(phoneNumber))
-         {
-             return transactionResponse.getResponse(t,"Retrieval of Data is successful");
-         }
-        return transactionResponse.getResponse(t,"Unsuccessful, User does not exist");
-    }
+//    @GetMapping("/transaction/{phoneNumber}")
+//    public ResponseEntity<Object> getTransaction(@PathVariable String phoneNumber)
+//    {
+//         List<TransactionData> t=transactionService.getData(phoneNumber);
+//         if(walletService.checkUserExist(phoneNumber))
+//         {
+//             return transactionResponse.getResponse(t,"Retrieval of Data is successful");
+//         }
+//        return transactionResponse.getResponse(t,"Unsuccessful, User does not exist");
+//    }
     @GetMapping("/transactionid/{transaction_id}")
     public ResponseEntity<?> getSingleTransaction(@PathVariable long transaction_id)
     {
@@ -63,22 +64,29 @@ public class TransactionController {
     }
 
     @PostMapping("/transaction")
-    public ResponseEntity<Object> createTransaction(@RequestBody TransactionEntity t) {
+    public ResponseEntity<Object> createTransaction(@RequestParam String from_account
+                                                    ,@RequestParam String to_account,
+                                                    @RequestParam Double amount) {
 
-        if(walletService.checkUserExist(t.getFromaccount())&&walletService.checkUserExist(t.getToaccount()))
-        {
-            if(walletService.checkforcurrentinactive(t.getToaccount(),t.getFromaccount()))
-            {
-                return transactionResponse.getPostResponse(t,"Transaction Unsuccessful,User is not Active",HttpStatus.NOT_FOUND);
-            }
-            else if(walletService.sufficientbalance(t.getFromaccount(),t.getAmount()))
-            {
-                return transactionResponse.getPostResponse(t,"Transaction Unsuccessful,Insufficient Balance",HttpStatus.BAD_REQUEST);
-            }
-           transactionService.createtransaction(t);
-           return transactionResponse.getPostResponse(t,"Transaction Successful",HttpStatus.CREATED);
-        }
-        else  return transactionResponse.getPostResponse(t,"Transaction Unsuccessful,User does not exist",HttpStatus.NOT_FOUND);
+//        transactionService.createtransaction(from_account,to_account,amount);
+
+        TransactionEntity t=transactionService.createtransaction(from_account,to_account,amount);
+        return new ResponseEntity<>(t,HttpStatus.FOUND);
+
+//        if(walletService.checkUserExist(t.getFromaccount())&&walletService.checkUserExist(t.getToaccount()))
+//        {
+//            if(walletService.checkforcurrentinactive(t.getToaccount(),t.getFromaccount()))
+//            {
+//                return transactionResponse.getPostResponse(t,"Transaction Unsuccessful,User is not Active",HttpStatus.NOT_FOUND);
+//            }
+//            else if(walletService.sufficientbalance(t.getFromaccount(),t.getAmount()))
+//            {
+//                return transactionResponse.getPostResponse(t,"Transaction Unsuccessful,Insufficient Balance",HttpStatus.BAD_REQUEST);
+//            }
+//           transactionService.createtransaction(t);
+//           return transactionResponse.getPostResponse(t,"Transaction Successful",HttpStatus.CREATED);
+//        }
+//        else  return transactionResponse.getPostResponse(t,"Transaction Unsuccessful,User does not exist",HttpStatus.NOT_FOUND);
     }
 
 }
