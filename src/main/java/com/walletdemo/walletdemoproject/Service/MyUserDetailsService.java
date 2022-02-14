@@ -1,9 +1,8 @@
 package com.walletdemo.walletdemoproject.Service;
 
-import com.walletdemo.walletdemoproject.Entity.WalletEntity;
+import com.walletdemo.walletdemoproject.Model.WalletData;
 import com.walletdemo.walletdemoproject.Repository.WalletRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,7 +18,7 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        WalletEntity w=walletRepo.getByPhoneNumber(username);
+        WalletData w=walletRepo.getByPhoneNumber(username);
         if(!walletRepo.existsById(username))
         {
             throw new UsernameNotFoundException("User Not found");

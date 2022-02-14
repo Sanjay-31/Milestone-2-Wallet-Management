@@ -1,19 +1,15 @@
 package com.walletdemo.walletdemoproject.Service;
 
-import com.walletdemo.walletdemoproject.Entity.WalletEntity;
+import com.walletdemo.walletdemoproject.Model.WalletData;
 import com.walletdemo.walletdemoproject.Repository.WalletRepo;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.validation.beanvalidation.SpringValidatorAdapter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,15 +26,15 @@ public class WalletServiceTestClass {
     @InjectMocks
     private WalletService walletService;
 
-    private WalletEntity wallet1,wallet2;
-    private List<WalletEntity>listOfWallet;
+    private WalletData wallet1,wallet2;
+    private List<WalletData>listOfWallet;
 
     @BeforeEach
     void SetUp()
     {
-        listOfWallet=new ArrayList<WalletEntity>();
-        wallet1=new WalletEntity("777",700.0,"Active","password","7-1-2022");
-        wallet2=new WalletEntity("999",900.0,"Active","password","9-1-2022");
+        listOfWallet=new ArrayList<WalletData>();
+        wallet1=new WalletData("777",700.0,"Active","password","7-1-2022");
+        wallet2=new WalletData("999",900.0,"Active","password","9-1-2022");
         listOfWallet.add(wallet1);
         listOfWallet.add(wallet2);
     }
@@ -53,7 +49,7 @@ public class WalletServiceTestClass {
     @Test
     void getAllTest()
     {
-        WalletEntity wallet3=new WalletEntity("888",800.0,"Active","password","8-1-2022");
+        WalletData wallet3=new WalletData("888",800.0,"Active","password","8-1-2022");
         listOfWallet.add(wallet3);
         when(walletRepo.findAll()).thenReturn(listOfWallet);
         assertEquals(walletService.getAll().size(),3);
@@ -62,14 +58,14 @@ public class WalletServiceTestClass {
     void addWalletTest()
     {
         when(walletRepo.save(wallet1)).thenReturn(wallet1);
-        WalletEntity w=walletService.addWallet(wallet1);
+        WalletData w=walletService.addWallet(wallet1);
         assertEquals(w,wallet1);
     }
     @Test
     void getTest()
     {
         when(walletRepo.findById("777")).thenReturn(Optional.ofNullable(wallet1));
-        WalletEntity w=walletService.get("777");
+        WalletData w=walletService.get("777");
         assertEquals(w,wallet1);
     }
     @Test
@@ -98,7 +94,7 @@ public class WalletServiceTestClass {
     void sufficientbalanceTest()
     {
         when(walletRepo.findById("999")).thenReturn(Optional.ofNullable(wallet2));
-        boolean expected=walletService.sufficientbalance("999",150.0);
+        boolean expected=walletService.CheckSufficientBalance("999",150.0);
         assertEquals(expected,false);
     }
 }

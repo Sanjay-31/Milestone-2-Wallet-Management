@@ -1,13 +1,15 @@
 package com.walletdemo.walletdemoproject.Controller;
 
-import com.walletdemo.walletdemoproject.Entity.UserRequest;
-import com.walletdemo.walletdemoproject.Entity.WalletEntity;
+import com.walletdemo.walletdemoproject.Model.PostUserData;
+import com.walletdemo.walletdemoproject.Model.WalletData;
 import com.walletdemo.walletdemoproject.Repository.WalletRepo;
 import com.walletdemo.walletdemoproject.ResponseClass.DateResponse;
 import com.walletdemo.walletdemoproject.ResponseClass.WalletResponse;
 import com.walletdemo.walletdemoproject.Security.JWTUtil;
 import com.walletdemo.walletdemoproject.Service.MyUserDetailsService;
 import com.walletdemo.walletdemoproject.Service.WalletService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +20,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
 public class WalletController {
 
+    Logger logger = LogManager.getLogger(WalletController.class);
     @Autowired
     WalletService walletService;
     @Autowired
@@ -35,6 +37,8 @@ public class WalletController {
     private MyUserDetailsService myUserDetailsService;
     @Autowired
      private JWTUtil jwtUtil;
+    Map<String,String>map=new HashMap<String,String>();
+    Map<String,String>map1=new HashMap<String,String>();
 
     DateResponse dateResponse=new DateResponse();
     WalletResponse walletResponse=new WalletResponse();
@@ -48,35 +52,39 @@ public class WalletController {
     }
 
     @PostMapping("/token")
-    public ResponseEntity<Object> getToken(@RequestBody UserRequest user)
+    public ResponseEntity<Object> getToken(@RequestBody PostUserData user)
     {
-        Map<String,String>map=new HashMap<String,String>();
         try {
             authenticationManager.
                     authenticate(new UsernamePasswordAuthenticationToken(user.getPhoneNumber(),user.getPassword()));
         }
         catch (BadCredentialsException e)
         {
-           map.put("Error Message :","User with this password does not exist");
+            logger.error("wrong phoneNumber or password , phoneNumber : "+user.getPhoneNumber());
+           map.put("Error Message :","Wrong phoneNumber or password");
            return new ResponseEntity<>(map,HttpStatus.MULTI_STATUS);
         }
         final UserDetails userDetails=myUserDetailsService.loadUserByUsername(user.getPhoneNumber());
        String token = jwtUtil.generateToken(userDetails);
-       map.put("JWT_token : ",token);
-        return new ResponseEntity<>(map, HttpStatus.FOUND);
+       map1.put("JWT_token : ",token);
+        logger.info(token);
+        return new ResponseEntity<>(map1, HttpStatus.FOUND);
     }
     @PostMapping("/register")
-    public ResponseEntity<Object> createWallet(@RequestBody WalletEntity ww)
+    public ResponseEntity<Object> createWallet(@RequestBody WalletData ww)
     {
+
         if(walletService.checkUserByWallet(ww))
         {
-            return walletResponse.getResponse(ww,"User with same credentials is already present",HttpStatus.MULTI_STATUS);
+            logger.debug("User already exist with phone number : "+ww.getPhoneNumber());
+            map.put("Error Message :","User with same credentials is already present");
+            return new ResponseEntity<>(map,HttpStatus.MULTI_STATUS);
         }
         else
         {
             String date=dateResponse.getCurrentDateTime();
             ww.setDate(date);
-            WalletEntity newW=walletService.addWallet(ww);
+            WalletData newW=walletService.addWallet(ww);
             return walletResponse.getResponse(newW,"Wallet Created Successfully ",HttpStatus.CREATED);
         }
     }
@@ -84,9 +92,9 @@ public class WalletController {
     public ResponseEntity<Object> delete(@PathVariable String phoneNumber) {
         if(walletService.checkUserExist(phoneNumber))
         {
-            WalletEntity w = walletService.get(phoneNumber);
-            WalletEntity neww=walletService.update(w);
-            return walletResponse.getResponse(neww, "Successfully Logged Out",HttpStatus.OK);
+            WalletData w = walletService.get(phoneNumber);
+            WalletData w1=walletService.update(w);
+            return walletResponse.getResponse(w1, "Successfully Logged Out",HttpStatus.OK);
         }
         else return new ResponseEntity<>("Unsuccessful,User Not Found",HttpStatus.NOT_FOUND);
     }

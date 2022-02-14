@@ -1,4 +1,4 @@
-package com.walletdemo.walletdemoproject.Entity;
+package com.walletdemo.walletdemoproject.Model;
 
 import lombok.Data;
 import lombok.Getter;
@@ -7,10 +7,11 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-public class TransactionData {
+public class TransactionResponseData {
     private Double transaction_amount;
     //for debit and credit
     private String message;
+    private String date;
 
     public Double getTransaction_amount() {
         return transaction_amount;
@@ -27,9 +28,10 @@ public class TransactionData {
         this.message = message;
     }
 
-    public TransactionData(String message,Double transaction_amount)
+    public TransactionResponseData(String message, Double transaction_amount,String date)
     {
         this.transaction_amount=transaction_amount;
         this.message=message;
+        this.date=date;
     }
 }

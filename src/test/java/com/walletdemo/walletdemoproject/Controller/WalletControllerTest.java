@@ -1,7 +1,7 @@
 package com.walletdemo.walletdemoproject.Controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.walletdemo.walletdemoproject.Entity.WalletEntity;
+import com.walletdemo.walletdemoproject.Model.WalletData;
 import com.walletdemo.walletdemoproject.Service.WalletService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMockMvc
@@ -37,14 +36,14 @@ public class WalletControllerTest {
     private WalletController walletController;
     @Mock
     private WalletService walletService;
-    private List<WalletEntity>listofwallet;
-    private  WalletEntity w1,w2;
+    private List<WalletData>listofwallet;
+    private WalletData w1,w2;
     @BeforeEach
     void Setup()
     {
-        w1=new WalletEntity("9090",500D,"Active","pass","date");
-        w2=new WalletEntity("7070",700D,"Active","pass","date");
-        listofwallet =new ArrayList<WalletEntity>();
+        w1=new WalletData("9090",500D,"Active","pass","date");
+        w2=new WalletData("7070",700D,"Active","pass","date");
+        listofwallet =new ArrayList<WalletData>();
         listofwallet.add(w1);
         listofwallet.add(w2);
         mockMvc= MockMvcBuilders.standaloneSetup(walletController).build();

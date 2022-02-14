@@ -1,10 +1,12 @@
 package com.walletdemo.walletdemoproject.Controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.walletdemo.walletdemoproject.Entity.UserRequest;
-import com.walletdemo.walletdemoproject.Entity.WalletEntity;
+import com.walletdemo.walletdemoproject.Model.PostUserData;
+import com.walletdemo.walletdemoproject.Model.WalletData;
 import com.walletdemo.walletdemoproject.Repository.WalletRepo;
 import com.walletdemo.walletdemoproject.Service.WalletService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class DemoWalletControllerTest {
+
+    Logger logger= LogManager.getLogger(DemoWalletControllerTest.class);
 
     @Autowired
     private MockMvc mockMvc;
@@ -56,7 +60,7 @@ public class DemoWalletControllerTest {
                         .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
         )
                 .andExpect(status().isOk());
-        WalletEntity w=walletRepo.getByPhoneNumber("7354");
+        WalletData w=walletRepo.getByPhoneNumber("7354");
         w.setStatus("Active");
     }
 
@@ -65,7 +69,7 @@ public class DemoWalletControllerTest {
     void getTokenTest() throws Exception {
 
         String phoneNumber = "7354";
-        UserRequest user = new UserRequest(phoneNumber, "pass");
+        PostUserData user = new PostUserData(phoneNumber, "pass");
         String token=generateToken();
             mockMvc.perform(
                     MockMvcRequestBuilders.post("/token")
@@ -79,7 +83,7 @@ public class DemoWalletControllerTest {
     void createWalletTest() throws Exception
     {
         String token=generateToken();
-        WalletEntity w3=new WalletEntity("12345",900D,"Active","pass1234","date");
+        WalletData w3=new WalletData("12345",900D,"Active","pass1234","date");
 
         //since we permitted the "/register" url , we doesn't need any JWT token.
         mockMvc.perform(MockMvcRequestBuilders.post("/register")
@@ -92,7 +96,7 @@ public class DemoWalletControllerTest {
     public String generateToken() throws Exception
     {
         String phoneNumber = "7354";
-        UserRequest user = new UserRequest(phoneNumber, "pass");
+        PostUserData user = new PostUserData(phoneNumber, "pass");
         objectMapper=new ObjectMapper();
         String requestJSON = objectMapper.writeValueAsString(user);
         MvcResult result = mockMvc.perform(
@@ -103,10 +107,9 @@ public class DemoWalletControllerTest {
                 .andReturn();
         String response = result.getResponse().getContentAsString();
         assertNotNull(response);
-
         JSONObject jObject = new JSONObject(response);
         String token= jObject.getString("JWT_token : ");
-        System.out.println(token);
+        logger.debug(token);
         return token;
     }
     public static String asJsonString(final Object obj)

@@ -1,10 +1,10 @@
 package com.walletdemo.walletdemoproject.Service;
 
-import com.walletdemo.walletdemoproject.Entity.TransactionEntity;
-import com.walletdemo.walletdemoproject.Entity.WalletEntity;
+import com.walletdemo.walletdemoproject.Model.TransactionData;
+import com.walletdemo.walletdemoproject.Model.TransactionResponseData;
+import com.walletdemo.walletdemoproject.Model.WalletData;
 import com.walletdemo.walletdemoproject.Repository.TransactionRepo;
 import com.walletdemo.walletdemoproject.Repository.WalletRepo;
-import com.walletdemo.walletdemoproject.Entity.TransactionData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,38 +24,39 @@ public class TransactionService {
     WalletRepo walletRepo;
 
 
-    public List<TransactionEntity> get() {
+    public List<TransactionData> get() {
         return transactionRepo.findAll();
     }
 
-    public TransactionEntity createtransaction(TransactionEntity t) {
+    public TransactionData createtransaction(TransactionData t) {
 
        double amount= t.getAmount();
-        WalletEntity fromwallet=walletRepo.findById(t.getFromaccount()).get();
-        WalletEntity towallet=walletRepo.findById(t.getToaccount()).get();
+        WalletData sender=walletRepo.findById(t.getSender()).get();
+        WalletData receiver=walletRepo.findById(t.getReceiver()).get();
 
-        fromwallet.setAccountBalance(fromwallet.getAccountBalance()-amount);
-        towallet.setAccountBalance(towallet.getAccountBalance()+amount);
+        sender.setAccountBalance(sender.getAccountBalance()-amount);
+        receiver.setAccountBalance(receiver.getAccountBalance()+amount);
         return transactionRepo.save(t);
     }
 
-    public List<TransactionData> getData(String phoneNumber) {
-        List<TransactionEntity>transaction=transactionRepo.findAll();
-        ArrayList<TransactionData>data = new ArrayList<TransactionData>();
-        for(TransactionEntity t:transaction)
+    public List<TransactionResponseData> getData(String phoneNumber) {
+        List<TransactionData>transaction=transactionRepo.findAll();
+        ArrayList<TransactionResponseData>data = new ArrayList<TransactionResponseData>();
+        for(TransactionData t:transaction)
         {
-            if(t.getFromaccount().equals(phoneNumber))
+            if(t.getSender().equals(phoneNumber))
             {
-            data.add(new TransactionData("Sent To "+t.getToaccount(),t.getAmount()));
+
+            data.add(new TransactionResponseData("Sent To "+t.getReceiver(),t.getAmount(),t.getDate()));
             }
-            else if(t.getToaccount().equals(phoneNumber))
+            else if(t.getReceiver().equals(phoneNumber))
             {
-            data.add(new TransactionData("Received from "+t.getFromaccount(),t.getAmount()));
+            data.add(new TransactionResponseData("Received from "+t.getSender(),t.getAmount(),t.getDate()));
             }
         }
         return data;
     }
-    public TransactionEntity getById(long id)
+    public TransactionData getById(long id)
     {
         return transactionRepo.findById(id).get();
     }

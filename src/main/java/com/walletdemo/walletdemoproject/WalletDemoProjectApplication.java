@@ -1,6 +1,5 @@
 package com.walletdemo.walletdemoproject;
 
-import com.walletdemo.walletdemoproject.Entity.WalletEntity;
 import com.walletdemo.walletdemoproject.Service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;

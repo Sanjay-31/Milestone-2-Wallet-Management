@@ -1,15 +1,14 @@
 package com.walletdemo.walletdemoproject.Controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.walletdemo.walletdemoproject.Entity.TransactionData;
-import com.walletdemo.walletdemoproject.Entity.TransactionEntity;
-import com.walletdemo.walletdemoproject.Repository.TransactionRepo;
+import com.walletdemo.walletdemoproject.Model.TransactionResponseData;
+import com.walletdemo.walletdemoproject.Model.TransactionData;
 import com.walletdemo.walletdemoproject.ResponseClass.TransactionResponse;
 import com.walletdemo.walletdemoproject.Service.TransactionService;
 import com.walletdemo.walletdemoproject.Service.WalletService;
-import lombok.ToString;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -17,30 +16,23 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.awt.image.RescaleOp;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)
 public class TransactionControllerTest {
 
-    private TransactionEntity t1,t2;
-   private List<TransactionEntity>list;
+    Logger logger= LogManager.getLogger(DemoWalletControllerTest.class);
+    private TransactionData t1,t2;
+   private List<TransactionData>list;
    @Mock
    private TransactionService transactionService;
    @Mock
@@ -55,8 +47,8 @@ public class TransactionControllerTest {
     void SetUp()
    {
        mockMvc= MockMvcBuilders.standaloneSetup(transactionController).build();
-       t1=new TransactionEntity(1,"7354","9755",500D);
-       t2=new TransactionEntity(2, "8770", "7354", 300D);
+       t1=new TransactionData(1,"7354","9755",500D);
+       t2=new TransactionData(2, "8770", "7354", 300D);
        list=new ArrayList<>();
        list.add(t1);
    }
@@ -72,9 +64,9 @@ public class TransactionControllerTest {
 
    @Test
     void getTransactionByPhoneNumberTest() throws Exception {
-       TransactionData t1=new TransactionData("Received from 9755",500D);
-       TransactionData t2=new TransactionData("Sent to 9755",300D);
-       List<TransactionData>t=new ArrayList<>();
+       TransactionResponseData t1=new TransactionResponseData("Received from 9755",500D,"date");
+       TransactionResponseData t2=new TransactionResponseData("Sent to 9755",300D,"date");
+       List<TransactionResponseData>t=new ArrayList<>();
        t.add(t1);
        t.add(t2);
        Mockito.when(transactionService.getData("7354")).thenReturn(t);
@@ -82,15 +74,15 @@ public class TransactionControllerTest {
        MvcResult mvcResult=mockMvc.perform(
                MockMvcRequestBuilders.get("/transaction/7354")
        ).andExpect(status().isOk()).andReturn();
-       System.out.println(mvcResult.getResponse().getContentAsString());
+       logger.debug(mvcResult.getResponse().getContentAsString());
    }
 
    @Test
     void createTransactionTest() throws Exception {
 
-       Mockito.when(walletService.checkUserExist(any())).thenReturn(true);
+       Mockito.when(walletService.CheckUserExistByTransactionEntity(any())).thenReturn(true);
        Mockito.when(walletService.checkforcurrentinactive(any(),any())).thenReturn(false);
-       Mockito.when(walletService.sufficientbalance(any(),any())).thenReturn(false);
+       Mockito.when(walletService.CheckSufficientBalance(any(),any())).thenReturn(false);
        mockMvc.perform(
                MockMvcRequestBuilders.post("/transaction")
                        .contentType(MediaType.APPLICATION_JSON)
@@ -103,7 +95,7 @@ public class TransactionControllerTest {
        Mockito.when(transactionService.chekTransctionById(2)).thenReturn(true);
        Mockito.when(transactionService.getById(2)).thenReturn(t2);
        mockMvc.perform(
-               MockMvcRequestBuilders.get("/transactionid/2")
+               MockMvcRequestBuilders.get("/transactionId/2")
                        .content(asJsonString(t2))
                        .contentType(MediaType.APPLICATION_JSON)
        )

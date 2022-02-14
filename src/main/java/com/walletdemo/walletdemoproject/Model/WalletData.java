@@ -1,4 +1,4 @@
-package com.walletdemo.walletdemoproject.Entity;
+package com.walletdemo.walletdemoproject.Model;
 
 import lombok.*;
 import javax.persistence.*;
@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Table(name = "WalletData")
-public class WalletEntity {
+public class WalletData {
 
     @Id
     @Column(name = "phone_number")
@@ -18,12 +18,12 @@ public class WalletEntity {
     private String date;
 
 
-    public WalletEntity()
+    public WalletData()
     {
 
     }
 
-    public WalletEntity(String phoneNumber, Double accountBalance, String status, String password, String date) {
+    public WalletData(String phoneNumber, Double accountBalance, String status, String password, String date) {
         this.phoneNumber = phoneNumber;
         this.accountBalance = accountBalance;
         this.status = status;

@@ -1,6 +1,7 @@
 package com.walletdemo.walletdemoproject.Service;
 
-import com.walletdemo.walletdemoproject.Entity.WalletEntity;
+import com.walletdemo.walletdemoproject.Model.TransactionData;
+import com.walletdemo.walletdemoproject.Model.WalletData;
 import com.walletdemo.walletdemoproject.Repository.WalletRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,34 +14,36 @@ public class WalletService {
     @Autowired
     WalletRepo walletRepo;
 
-    public List<WalletEntity> getAll() {
+    public List<WalletData> getAll() {
         return walletRepo.findAll();
     }
 
-    public WalletEntity addWallet(WalletEntity w)
+    public WalletData addWallet(WalletData w)
     {
         return walletRepo.save(w);
-//        return w;
     }
 
-    public WalletEntity get(String phoneNumber) {
+    public WalletData get(String phoneNumber) {
         return walletRepo.findById(phoneNumber).get();
     }
 
-    public WalletEntity update(WalletEntity w) {
+    public WalletData update(WalletData w) {
         w.setStatus("Inactive");
         return walletRepo.save(w);
     }
 
     public boolean checkUserExist(String phoneNumber) {
-        if(walletRepo.existsById(phoneNumber))
-            return true;
-        return  false;
+       return walletRepo.existsById(phoneNumber);
+
     }
-    public boolean checkUserByWallet(WalletEntity w) {
-        if(walletRepo.existsById(w.getPhoneNumber()))
-            return true;
-        return  false;
+
+    public boolean CheckUserExistByTransactionEntity(TransactionData transactionEntity)
+    {
+        return checkUserExist(transactionEntity.getSender())&&checkUserExist(transactionEntity.getReceiver());
+    }
+
+    public boolean checkUserByWallet(WalletData w) {
+        return walletRepo.existsById(w.getPhoneNumber());
     }
 
     public boolean checkforcurrentinactive(String toaccount, String fromaccount) {
@@ -51,10 +54,13 @@ public class WalletService {
         return  false;
     }
 
-    public boolean sufficientbalance(String number,Double amount) {
-        WalletEntity w=walletRepo.findById(number).get();
-    return (w.getAccountBalance()<amount);
+    public boolean CheckSufficientBalance(String number,Double amount) {
+        WalletData w=walletRepo.findById(number).get();
+       return (w.getAccountBalance()<amount);
     }
 
 
+    public boolean checkForSame(TransactionData t) {
+        return t.getSender().equals(t.getReceiver());
+    }
 }

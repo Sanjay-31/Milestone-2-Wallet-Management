@@ -1,15 +1,15 @@
-package com.walletdemo.walletdemoproject.Entity;
+package com.walletdemo.walletdemoproject.Model;
 
-public class UserRequest {
+public class PostUserData {
     private String phoneNumber;
     private String password;
 
-   public  UserRequest()
+   public PostUserData()
     {
 
     }
 
-    public UserRequest(String phoneNumber, String password) {
+    public PostUserData(String phoneNumber, String password) {
         this.phoneNumber = phoneNumber;
         this.password = password;
     }
