@@ -34,6 +34,7 @@ public class TransactionController {
 
     @GetMapping("/transaction")
     public ResponseEntity<List<TransactionData>> getAllTransaction() {
+        logger.debug("Fetching List Of transaction");
         return new ResponseEntity<>(transactionService.get(), HttpStatus.OK);
     }
 
@@ -88,7 +89,7 @@ public class TransactionController {
                 transactionService.createtransaction(t);
                 return transactionResponse.getPostResponse(t,"Transaction Successful",HttpStatus.CREATED);
         }
-
+      logger.error("Error creating transaction");
          return transactionResponse.getPostResponse(t,"Transaction Unsuccessful,User does not exist",HttpStatus.NOT_FOUND);
     }
 }
