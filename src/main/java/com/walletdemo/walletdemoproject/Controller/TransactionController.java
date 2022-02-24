@@ -47,6 +47,7 @@ public class TransactionController {
              logger.debug(phoneNumber);
              return transactionResponse.getResponse(t,"Retrieval of Data is successful");
          }
+         logger.error("User Not exist with phone-number : "+phoneNumber);
         return transactionResponse.getResponse(t,"Unsuccessful, User does not exist");
     }
     @GetMapping("/transactionId/{transaction_id}")
@@ -56,6 +57,7 @@ public class TransactionController {
             TransactionData t=transactionService.getById(transaction_id);
             return transactionResponse.getByIdResponse(t,"Data Fetching successful",HttpStatus.FOUND);
         }
+        logger.error("No Transaction exist whit id : "+transaction_id);
             return transactionResponse.getByIdResponse(null,"No transaction exist with id :"+transaction_id,HttpStatus.NOT_FOUND);
     }
 
@@ -74,22 +76,26 @@ public class TransactionController {
         t.setDate(date);
         if(walletService.checkForSame(t))
         {
+            logger.error("Phone number is same : "+t.getSender());
             return transactionResponse.getPostResponse(t,"Transaction Unsuccessful,Phone Number is Same",HttpStatus.BAD_REQUEST);
         }
         if(walletService.CheckUserExistByTransactionEntity(t))
         {
             if(walletService.checkforcurrentinactive(t.getReceiver(),t.getSender()))
             {
+//                logger.error("User Not active");
                 return transactionResponse.getPostResponse(t,"Transaction Unsuccessful,User is not Active",HttpStatus.NOT_FOUND);
             }
             else if(walletService.CheckSufficientBalance(t.getSender(),t.getAmount()))
             {
+                logger.error("Insufficient Balance , id : "+t.getSender());
                 return transactionResponse.getPostResponse(t,"Transaction Unsuccessful,Insufficient Balance",HttpStatus.BAD_REQUEST);
             }
                 transactionService.createtransaction(t);
+            logger.debug("Transaction successful : "+t.getSender()+" to "+t.getReceiver());
                 return transactionResponse.getPostResponse(t,"Transaction Successful",HttpStatus.CREATED);
         }
-      logger.error("Error creating transaction");
+//         logger.error("User not exist");
          return transactionResponse.getPostResponse(t,"Transaction Unsuccessful,User does not exist",HttpStatus.NOT_FOUND);
     }
 }

@@ -67,7 +67,7 @@ public class WalletController {
         final UserDetails userDetails=myUserDetailsService.loadUserByUsername(user.getPhoneNumber());
        String token = jwtUtil.generateToken(userDetails);
        map1.put("JWT_token : ",token);
-        logger.info(token);
+        logger.info("token generated with phoneNumber "+user.getPhoneNumber()+" token : "+token);
         return new ResponseEntity<>(map1, HttpStatus.FOUND);
     }
     @PostMapping("/register")
@@ -85,6 +85,7 @@ public class WalletController {
             String date=dateResponse.getCurrentDateTime();
             ww.setDate(date);
             WalletData newW=walletService.addWallet(ww);
+            logger.debug("Wallet created by phone Number : "+ww.getPhoneNumber());
             return walletResponse.getResponse(newW,"Wallet Created Successfully ",HttpStatus.CREATED);
         }
     }
@@ -94,8 +95,10 @@ public class WalletController {
         {
             WalletData w = walletService.get(phoneNumber);
             WalletData w1=walletService.update(w);
+            logger.debug("User successfully logged out with phoneNumber : "+phoneNumber);
             return walletResponse.getResponse(w1, "Successfully Logged Out",HttpStatus.OK);
         }
-        else return new ResponseEntity<>("Unsuccessful,User Not Found",HttpStatus.NOT_FOUND);
+        logger.error("User Not exist wth id : "+phoneNumber);
+         return new ResponseEntity<>("Unsuccessful,User Not Found",HttpStatus.NOT_FOUND);
     }
 }
