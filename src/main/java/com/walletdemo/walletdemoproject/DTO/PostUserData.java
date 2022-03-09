@@ -1,4 +1,4 @@
-package com.walletdemo.walletdemoproject.Model;
+package com.walletdemo.walletdemoproject.DTO;
 
 public class PostUserData {
     private String phoneNumber;

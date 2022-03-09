@@ -1,6 +1,6 @@
 package com.walletdemo.walletdemoproject.Service;
 
-import com.walletdemo.walletdemoproject.Model.TransactionResponseData;
+import com.walletdemo.walletdemoproject.DTO.TransactionSummaryData;
 import com.walletdemo.walletdemoproject.Model.TransactionData;
 import com.walletdemo.walletdemoproject.Model.WalletData;
 import com.walletdemo.walletdemoproject.Repository.TransactionRepo;
@@ -75,7 +75,7 @@ public class TransactionServiceTestClass {
     void getDataTest()
     {
         when(transactionRepo.findAll()).thenReturn(listOfTransaction);
-        List<TransactionResponseData> transactionData=transactionService.getData("777");
+        List<TransactionSummaryData> transactionData=transactionService.getData("777");
         assertEquals(2,transactionData.size());
     }
 

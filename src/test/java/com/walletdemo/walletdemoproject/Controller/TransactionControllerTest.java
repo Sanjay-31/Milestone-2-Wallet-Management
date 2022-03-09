@@ -1,9 +1,8 @@
 package com.walletdemo.walletdemoproject.Controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.walletdemo.walletdemoproject.Model.TransactionResponseData;
+import com.walletdemo.walletdemoproject.DTO.TransactionSummaryData;
 import com.walletdemo.walletdemoproject.Model.TransactionData;
-import com.walletdemo.walletdemoproject.ResponseClass.TransactionResponse;
 import com.walletdemo.walletdemoproject.Service.TransactionService;
 import com.walletdemo.walletdemoproject.Service.WalletService;
 import org.apache.logging.log4j.LogManager;
@@ -40,8 +39,6 @@ public class TransactionControllerTest {
    @InjectMocks
    private TransactionController transactionController;
    @Autowired
-   private TransactionResponse transactionResponse;
-   @Autowired
     private MockMvc mockMvc;
    @BeforeEach
     void SetUp()
@@ -64,9 +61,9 @@ public class TransactionControllerTest {
 
    @Test
     void getTransactionByPhoneNumberTest() throws Exception {
-       TransactionResponseData t1=new TransactionResponseData("Received from 9755",500D,"date");
-       TransactionResponseData t2=new TransactionResponseData("Sent to 9755",300D,"date");
-       List<TransactionResponseData>t=new ArrayList<>();
+       TransactionSummaryData t1=new TransactionSummaryData("Received from 9755",500D,"date");
+       TransactionSummaryData t2=new TransactionSummaryData("Sent to 9755",300D,"date");
+       List<TransactionSummaryData>t=new ArrayList<>();
        t.add(t1);
        t.add(t2);
        Mockito.when(transactionService.getData("7354")).thenReturn(t);

@@ -1,0 +1,18 @@
+[INFO ] 2022-03-09 12:17:04.732 [main] WalletDemoProjectApplication - Starting WalletDemoProjectApplication using Java 17.0.2 on PPBNOMBPBT-238.local with PID 68099 (/Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test/target/classes started by sanjay.shakya in /Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test)
+[DEBUG] 2022-03-09 12:17:04.740 [main] WalletDemoProjectApplication - Running with Spring Boot v2.6.3, Spring v5.3.15
+[INFO ] 2022-03-09 12:17:04.741 [main] WalletDemoProjectApplication - No active profile set, falling back to default profiles: default
+[DEBUG] 2022-03-09 12:17:09.978 [main] JWTFilter - Filter 'JWTFilter' configured for use
+[INFO ] 2022-03-09 12:17:11.162 [main] WalletDemoProjectApplication - Started WalletDemoProjectApplication in 6.875 seconds (JVM running for 8.281)
+[ERROR] 2022-03-09 12:17:52.480 [http-nio-9090-exec-2] TransactionController - Insufficient Balance , id : 777
+[DEBUG] 2022-03-09 12:17:57.819 [http-nio-9090-exec-4] TransactionController - Transaction successful : 777 to 555 amount : 200.0
+[DEBUG] 2022-03-09 12:18:31.506 [http-nio-9090-exec-6] TransactionController - getting transaction of 555 [TransactionSummaryData(transaction_amount=100.0, message=Sent To 222, date=01:25:52 09-03-2022), TransactionSummaryData(transaction_amount=1000.0, message=Received from 777, date=01:26:51 09-03-2022), TransactionSummaryData(transaction_amount=1000.0, message=Received from 777, date=12:11:11 09-03-2022), TransactionSummaryData(transaction_amount=100.0, message=Sent To 777, date=12:12:49 09-03-2022), TransactionSummaryData(transaction_amount=100.0, message=Sent To 777, date=12:14:10 09-03-2022), TransactionSummaryData(transaction_amount=200.0, message=Received from 777, date=12:17:57 09-03-2022)]
+[INFO ] 2022-03-09 12:20:00.367 [main] DemoWalletControllerTest - Starting DemoWalletControllerTest using Java 17.0.2 on PPBNOMBPBT-238.local with PID 68253 (started by sanjay.shakya in /Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test)
+[DEBUG] 2022-03-09 12:20:00.370 [main] DemoWalletControllerTest - Running with Spring Boot v2.6.3, Spring v5.3.15
+[INFO ] 2022-03-09 12:20:00.371 [main] DemoWalletControllerTest - No active profile set, falling back to default profiles: default
+[INFO ] 2022-03-09 12:20:06.875 [main] DemoWalletControllerTest - Started DemoWalletControllerTest in 6.837 seconds (JVM running for 9.081)
+[DEBUG] 2022-03-09 12:20:07.380 [main] TransactionController - Fetching List Of transaction
+[DEBUG] 2022-03-09 12:20:07.572 [main] TransactionController - getting transaction of 7354 [TransactionSummaryData(transaction_amount=500.0, message=Received from 9755, date=date), TransactionSummaryData(transaction_amount=300.0, message=Sent to 9755, date=date)]
+[DEBUG] 2022-03-09 12:20:07.581 [main] DemoWalletControllerTest - {"Status":"Retrieval of Data is successful","Transactions":[{"transaction_amount":500.0,"message":"Received from 9755","date":"date"},{"transaction_amount":300.0,"message":"Sent to 9755","date":"date"}]}
+[DEBUG] 2022-03-09 12:20:07.640 [main] TransactionController - Transaction successful : 7354 to 9755 amount : 500.0
+[DEBUG] 2022-03-09 12:20:07.822 [main] WalletController - Wallet created by phone Number : 9090
+[DEBUG] 2022-03-09 12:20:07.893 [main] WalletController - User successfully logged out with phoneNumber : 9090

@@ -8,14 +8,17 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 public class WalletServiceTestClass {
@@ -91,10 +94,18 @@ public class WalletServiceTestClass {
         assertEquals(expected,false);
     }
     @Test
-    void sufficientbalanceTest()
+    void CheckSufficientBalanceTest()
     {
         when(walletRepo.findById("999")).thenReturn(Optional.ofNullable(wallet2));
         boolean expected=walletService.CheckSufficientBalance("999",150.0);
         assertEquals(expected,false);
+    }
+    @Test
+    void deleteTest()
+    {
+        when(walletRepo.findById("777")).thenReturn(Optional.ofNullable(wallet1));
+        when(walletRepo.save(any())).thenReturn(wallet1);
+        walletService.delete("777");
+        assertEquals(wallet1.getStatus(),"Inactive");
     }
 }

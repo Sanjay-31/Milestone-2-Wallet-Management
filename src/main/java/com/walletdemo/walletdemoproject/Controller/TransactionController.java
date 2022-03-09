@@ -3,8 +3,7 @@ package com.walletdemo.walletdemoproject.Controller;
 
 import com.walletdemo.walletdemoproject.Model.TransactionData;
 import com.walletdemo.walletdemoproject.Repository.TransactionRepo;
-import com.walletdemo.walletdemoproject.Model.TransactionResponseData;
-import com.walletdemo.walletdemoproject.ResponseClass.DateResponse;
+import com.walletdemo.walletdemoproject.DTO.TransactionSummaryData;
 import com.walletdemo.walletdemoproject.ResponseClass.TransactionResponse;
 import com.walletdemo.walletdemoproject.Service.TransactionService;
 import com.walletdemo.walletdemoproject.Service.WalletService;
@@ -41,17 +40,18 @@ public class TransactionController {
     @GetMapping("/transaction/{phoneNumber}")
     public ResponseEntity<Object> getTransaction(@PathVariable String phoneNumber)
     {
-         List<TransactionResponseData> t=transactionService.getData(phoneNumber);
+
          if(walletService.checkUserExist(phoneNumber))
          {
-             logger.debug(phoneNumber);
+             List<TransactionSummaryData> t=transactionService.getData(phoneNumber);
+             logger.debug("getting transaction of "+phoneNumber+" "+t);
              return transactionResponse.getResponse(t,"Retrieval of Data is successful");
          }
          logger.error("User Not exist with phone-number : "+phoneNumber);
-        return transactionResponse.getResponse(t,"Unsuccessful, User does not exist");
+        return transactionResponse.getMessageResponse("Error Message : ","Unsuccessful, User does not exist",HttpStatus.NOT_FOUND);
     }
     @GetMapping("/transactionId/{transaction_id}")
-    public ResponseEntity<?> getSingleTransaction(@PathVariable long transaction_id)
+    public ResponseEntity<Object> getSingleTransaction(@PathVariable long transaction_id)
     {
         if(transactionService.chekTransctionById(transaction_id)){
             TransactionData t=transactionService.getById(transaction_id);
@@ -63,27 +63,10 @@ public class TransactionController {
 
     @PostMapping("/transaction")
     public ResponseEntity<Object> createTransaction(@RequestBody TransactionData t) {
-
-//     PostResponse postResponse=new PostResponse();
-//    Map<Integer, PostResponseInterface>map=new HashMap<Integer,PostResponseInterface>();
-//      map.put(1,new User_Not_Active());
-//      map.put(2,new Insufficient_Balance());
-//      map.put(3,new Transaction_Succesfull());
-//      map.put(4,new User_Not_Exist());
-
-          DateResponse dateResponse=new DateResponse();
-        String date=dateResponse.getCurrentDateTime();
-        t.setDate(date);
-        if(walletService.checkForSame(t))
-        {
-            logger.error("Phone number is same : "+t.getSender());
-            return transactionResponse.getPostResponse(t,"Transaction Unsuccessful,Phone Number is Same",HttpStatus.BAD_REQUEST);
-        }
         if(walletService.CheckUserExistByTransactionEntity(t))
         {
             if(walletService.checkforcurrentinactive(t.getReceiver(),t.getSender()))
             {
-//                logger.error("User Not active");
                 return transactionResponse.getPostResponse(t,"Transaction Unsuccessful,User is not Active",HttpStatus.NOT_FOUND);
             }
             else if(walletService.CheckSufficientBalance(t.getSender(),t.getAmount()))
@@ -92,10 +75,9 @@ public class TransactionController {
                 return transactionResponse.getPostResponse(t,"Transaction Unsuccessful,Insufficient Balance",HttpStatus.BAD_REQUEST);
             }
                 transactionService.createtransaction(t);
-            logger.debug("Transaction successful : "+t.getSender()+" to "+t.getReceiver());
+                logger.debug("Transaction successful : "+t.getSender()+" to "+t.getReceiver()+" amount : "+t.getAmount());
                 return transactionResponse.getPostResponse(t,"Transaction Successful",HttpStatus.CREATED);
         }
-//         logger.error("User not exist");
          return transactionResponse.getPostResponse(t,"Transaction Unsuccessful,User does not exist",HttpStatus.NOT_FOUND);
     }
 }

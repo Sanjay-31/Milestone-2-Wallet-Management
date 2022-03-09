@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class WalletDemoProjectApplication {
 
-
 	@Autowired
 	WalletService walletService;
 	public static void main(String[] args) {

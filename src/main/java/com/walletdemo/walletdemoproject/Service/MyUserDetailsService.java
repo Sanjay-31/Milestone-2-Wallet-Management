@@ -23,9 +23,6 @@ public class MyUserDetailsService implements UserDetailsService {
         {
             throw new UsernameNotFoundException("User Not found");
         }
-        else
-        {
           return new User(w.getPhoneNumber(), w.getPassword(), new ArrayList<>());
-        }
     }
 }

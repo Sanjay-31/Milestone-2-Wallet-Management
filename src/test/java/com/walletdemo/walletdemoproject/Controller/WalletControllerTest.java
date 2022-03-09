@@ -75,8 +75,7 @@ public class WalletControllerTest {
     @Test
     void deleteTest() throws Exception {
         Mockito.when(walletService.checkUserExist(any())).thenReturn(true);
-        Mockito.when(walletService.get(any())).thenReturn(w1);
-        Mockito.when(walletService.update(any())).thenReturn(w1);
+        Mockito.when(walletService.delete(any())).thenReturn(w1);
         mockMvc.perform(
                         MockMvcRequestBuilders.delete("/wallet/9090")
                                 .content(asJsonString(w1))

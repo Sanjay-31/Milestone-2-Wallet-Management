@@ -1,9 +1,16 @@
 package com.walletdemo.walletdemoproject.Service;
 
+import com.walletdemo.walletdemoproject.Controller.WalletController;
 import com.walletdemo.walletdemoproject.Model.TransactionData;
 import com.walletdemo.walletdemoproject.Model.WalletData;
 import com.walletdemo.walletdemoproject.Repository.WalletRepo;
+import com.walletdemo.walletdemoproject.ResponseClass.WalletResponse;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +20,9 @@ public class WalletService {
 
     @Autowired
     WalletRepo walletRepo;
+    Logger logger = LogManager.getLogger(WalletController.class);
+    WalletResponse walletResponse=new WalletResponse();
+
 
     public List<WalletData> getAll() {
         return walletRepo.findAll();
@@ -24,7 +34,7 @@ public class WalletService {
     }
 
     public WalletData get(String phoneNumber) {
-        return walletRepo.findById(phoneNumber).get();
+            return walletRepo.findById(phoneNumber).get();
     }
 
     public WalletData update(WalletData w) {
@@ -34,7 +44,6 @@ public class WalletService {
 
     public boolean checkUserExist(String phoneNumber) {
        return walletRepo.existsById(phoneNumber);
-
     }
 
     public boolean CheckUserExistByTransactionEntity(TransactionData transactionEntity)
@@ -62,5 +71,11 @@ public class WalletService {
 
     public boolean checkForSame(TransactionData t) {
         return t.getSender().equals(t.getReceiver());
+    }
+
+    public WalletData delete(String phoneNumber)
+    {
+        WalletData w = get(phoneNumber);
+        return update(w);
     }
 }
