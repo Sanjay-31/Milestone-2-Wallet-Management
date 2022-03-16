@@ -59,4 +59,15 @@ public class WalletData {
     public void setDate(String date) {
         this.date = date;
     }
+
+    @Override
+    public String toString() {
+        return "WalletData{" +
+                "phoneNumber='" + phoneNumber + '\'' +
+                ", accountBalance=" + accountBalance +
+                ", status='" + status + '\'' +
+                ", password='" + password + '\'' +
+                ", date='" + date + '\'' +
+                '}';
+    }
 }

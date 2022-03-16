@@ -1,5 +1,6 @@
 package com.walletdemo.walletdemoproject.Service;
 
+import com.walletdemo.walletdemoproject.Controller.TransactionController;
 import com.walletdemo.walletdemoproject.Model.TransactionData;
 import com.walletdemo.walletdemoproject.DTO.TransactionSummaryData;
 import com.walletdemo.walletdemoproject.Model.WalletData;
@@ -10,6 +11,8 @@ import com.walletdemo.walletdemoproject.ResponseClass.TransactionResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -20,12 +23,19 @@ import java.util.List;
 @Transactional
 public class TransactionService {
 
+    Logger logger= LogManager.getLogger(TransactionController.class);
 
     @Autowired
     TransactionRepo transactionRepo;
 
     @Autowired
     WalletRepo walletRepo;
+
+    @Autowired
+    WalletService walletService;
+
+
+
 
 
     public List<TransactionData> get() {

@@ -16,3 +16,106 @@
 [DEBUG] 2022-03-09 12:20:07.640 [main] TransactionController - Transaction successful : 7354 to 9755 amount : 500.0
 [DEBUG] 2022-03-09 12:20:07.822 [main] WalletController - Wallet created by phone Number : 9090
 [DEBUG] 2022-03-09 12:20:07.893 [main] WalletController - User successfully logged out with phoneNumber : 9090
+[INFO ] 2022-03-09 12:50:48.768 [main] TransactionServiceTestClass - Starting TransactionServiceTestClass using Java 17.0.2 on PPBNOMBPBT-238.local with PID 69917 (started by sanjay.shakya in /Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test)
+[DEBUG] 2022-03-09 12:50:48.774 [main] TransactionServiceTestClass - Running with Spring Boot v2.6.3, Spring v5.3.15
+[INFO ] 2022-03-09 12:50:48.775 [main] TransactionServiceTestClass - No active profile set, falling back to default profiles: default
+[INFO ] 2022-03-09 12:52:37.278 [main] TransactionServiceTestClass - Starting TransactionServiceTestClass using Java 17.0.2 on PPBNOMBPBT-238.local with PID 70068 (started by sanjay.shakya in /Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test)
+[DEBUG] 2022-03-09 12:52:37.283 [main] TransactionServiceTestClass - Running with Spring Boot v2.6.3, Spring v5.3.15
+[INFO ] 2022-03-09 12:52:37.284 [main] TransactionServiceTestClass - No active profile set, falling back to default profiles: default
+[INFO ] 2022-03-09 12:55:40.159 [main] WalletDemoProjectApplication - Starting WalletDemoProjectApplication using Java 17.0.2 on PPBNOMBPBT-238.local with PID 70237 (/Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test/target/classes started by sanjay.shakya in /Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test)
+[DEBUG] 2022-03-09 12:55:40.167 [main] WalletDemoProjectApplication - Running with Spring Boot v2.6.3, Spring v5.3.15
+[INFO ] 2022-03-09 12:55:40.168 [main] WalletDemoProjectApplication - No active profile set, falling back to default profiles: default
+[DEBUG] 2022-03-09 12:55:45.429 [main] JWTFilter - Filter 'JWTFilter' configured for use
+[INFO ] 2022-03-09 12:56:24.972 [main] TransactionServiceTestClass - Starting TransactionServiceTestClass using Java 17.0.2 on PPBNOMBPBT-238.local with PID 70280 (started by sanjay.shakya in /Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test)
+[DEBUG] 2022-03-09 12:56:24.978 [main] TransactionServiceTestClass - Running with Spring Boot v2.6.3, Spring v5.3.15
+[INFO ] 2022-03-09 12:56:24.979 [main] TransactionServiceTestClass - No active profile set, falling back to default profiles: default
+[INFO ] 2022-03-09 12:56:31.414 [main] TransactionServiceTestClass - Started TransactionServiceTestClass in 6.868 seconds (JVM running for 8.841)
+[INFO ] 2022-03-09 12:58:25.036 [main] TransactionServiceTestClass - Starting TransactionServiceTestClass using Java 17.0.2 on PPBNOMBPBT-238.local with PID 70379 (started by sanjay.shakya in /Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test)
+[DEBUG] 2022-03-09 12:58:25.041 [main] TransactionServiceTestClass - Running with Spring Boot v2.6.3, Spring v5.3.15
+[INFO ] 2022-03-09 12:58:25.042 [main] TransactionServiceTestClass - No active profile set, falling back to default profiles: default
+[INFO ] 2022-03-09 12:58:31.777 [main] TransactionServiceTestClass - Started TransactionServiceTestClass in 7.149 seconds (JVM running for 9.514)
+[DEBUG] 2022-03-09 12:58:32.426 [main] TransactionController - Transaction successful : 777 to 888 amount : 100.0
+[INFO ] 2022-03-09 12:59:48.606 [main] TransactionServiceTestClass - Starting TransactionServiceTestClass using Java 17.0.2 on PPBNOMBPBT-238.local with PID 70473 (started by sanjay.shakya in /Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test)
+[DEBUG] 2022-03-09 12:59:48.610 [main] TransactionServiceTestClass - Running with Spring Boot v2.6.3, Spring v5.3.15
+[INFO ] 2022-03-09 12:59:48.612 [main] TransactionServiceTestClass - No active profile set, falling back to default profiles: default
+[INFO ] 2022-03-09 12:59:55.089 [main] TransactionServiceTestClass - Started TransactionServiceTestClass in 6.86 seconds (JVM running for 9.122)
+[DEBUG] 2022-03-09 12:59:55.710 [main] TransactionController - Transaction successful : 777 to 888 amount : 100.0
+[INFO ] 2022-03-09 13:08:19.805 [main] WalletDemoProjectApplication - Starting WalletDemoProjectApplication using Java 17.0.2 on PPBNOMBPBT-238.local with PID 70891 (/Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test/target/classes started by sanjay.shakya in /Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test)
+[DEBUG] 2022-03-09 13:08:19.814 [main] WalletDemoProjectApplication - Running with Spring Boot v2.6.3, Spring v5.3.15
+[INFO ] 2022-03-09 13:08:19.815 [main] WalletDemoProjectApplication - No active profile set, falling back to default profiles: default
+[DEBUG] 2022-03-09 13:08:24.621 [main] JWTFilter - Filter 'JWTFilter' configured for use
+[INFO ] 2022-03-09 13:08:25.863 [main] WalletDemoProjectApplication - Started WalletDemoProjectApplication in 6.611 seconds (JVM running for 8.042)
+[DEBUG] 2022-03-09 13:08:54.556 [http-nio-9090-exec-2] TransactionController - Transaction successful : 777 to 1111 amount : 200.0
+[INFO ] 2022-03-09 13:13:58.445 [main] DemoWalletControllerTest - Starting DemoWalletControllerTest using Java 17.0.2 on PPBNOMBPBT-238.local with PID 71159 (started by sanjay.shakya in /Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test)
+[DEBUG] 2022-03-09 13:13:58.452 [main] DemoWalletControllerTest - Running with Spring Boot v2.6.3, Spring v5.3.15
+[INFO ] 2022-03-09 13:13:58.454 [main] DemoWalletControllerTest - No active profile set, falling back to default profiles: default
+[INFO ] 2022-03-09 13:14:04.995 [main] DemoWalletControllerTest - Started DemoWalletControllerTest in 6.902 seconds (JVM running for 9.232)
+[ERROR] 2022-03-09 13:14:05.638 [main] WalletController - wrong phoneNumber or password , phoneNumber : 7354
+[ERROR] 2022-03-09 13:21:22.740 [http-nio-9090-exec-4] TransactionController - Insufficient Balance , id : 777
+[DEBUG] 2022-03-09 13:25:32.270 [main] TransactionController - Transaction successful : 7354 to 9755 amount : 500.0
+[INFO ] 2022-03-09 13:25:56.435 [main] TransactionServiceTestClass - Starting TransactionServiceTestClass using Java 17.0.2 on PPBNOMBPBT-238.local with PID 71944 (started by sanjay.shakya in /Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test)
+[DEBUG] 2022-03-09 13:25:56.440 [main] TransactionServiceTestClass - Running with Spring Boot v2.6.3, Spring v5.3.15
+[INFO ] 2022-03-09 13:25:56.441 [main] TransactionServiceTestClass - No active profile set, falling back to default profiles: default
+[INFO ] 2022-03-09 13:26:02.820 [main] TransactionServiceTestClass - Started TransactionServiceTestClass in 6.762 seconds (JVM running for 8.721)
+[INFO ] 2022-03-09 13:28:03.800 [main] TransactionServiceTestClass - Starting TransactionServiceTestClass using Java 17.0.2 on PPBNOMBPBT-238.local with PID 72045 (started by sanjay.shakya in /Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test)
+[DEBUG] 2022-03-09 13:28:03.803 [main] TransactionServiceTestClass - Running with Spring Boot v2.6.3, Spring v5.3.15
+[INFO ] 2022-03-09 13:28:03.804 [main] TransactionServiceTestClass - No active profile set, falling back to default profiles: default
+[INFO ] 2022-03-09 13:28:10.456 [main] TransactionServiceTestClass - Started TransactionServiceTestClass in 7.047 seconds (JVM running for 9.367)
+[INFO ] 2022-03-09 13:28:23.966 [main] WalletDemoProjectApplicationTests - Starting WalletDemoProjectApplicationTests using Java 17.0.2 on PPBNOMBPBT-238.local with PID 72072 (started by sanjay.shakya in /Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test)
+[DEBUG] 2022-03-09 13:28:23.971 [main] WalletDemoProjectApplicationTests - Running with Spring Boot v2.6.3, Spring v5.3.15
+[INFO ] 2022-03-09 13:28:23.971 [main] WalletDemoProjectApplicationTests - No active profile set, falling back to default profiles: default
+[INFO ] 2022-03-09 13:28:30.704 [main] WalletDemoProjectApplicationTests - Started WalletDemoProjectApplicationTests in 7.096 seconds (JVM running for 9.604)
+[INFO ] 2022-03-09 13:28:31.685 [main] DemoWalletControllerTest - Starting DemoWalletControllerTest using Java 17.0.2 on PPBNOMBPBT-238.local with PID 72072 (started by sanjay.shakya in /Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test)
+[DEBUG] 2022-03-09 13:28:31.687 [main] DemoWalletControllerTest - Running with Spring Boot v2.6.3, Spring v5.3.15
+[INFO ] 2022-03-09 13:28:31.687 [main] DemoWalletControllerTest - No active profile set, falling back to default profiles: default
+[INFO ] 2022-03-09 13:28:33.773 [main] DemoWalletControllerTest - Started DemoWalletControllerTest in 2.212 seconds (JVM running for 12.672)
+[ERROR] 2022-03-09 13:28:34.202 [main] WalletController - wrong phoneNumber or password , phoneNumber : 7354
+[DEBUG] 2022-03-09 13:28:34.501 [main] TransactionController - Fetching List Of transaction
+[DEBUG] 2022-03-09 13:28:34.546 [main] TransactionController - getting transaction of 7354 [TransactionSummaryData(transaction_amount=500.0, message=Received from 9755, date=date), TransactionSummaryData(transaction_amount=300.0, message=Sent to 9755, date=date)]
+[DEBUG] 2022-03-09 13:28:34.551 [main] DemoWalletControllerTest - {"Status":"Retrieval of Data is successful","Transactions":[{"transaction_amount":500.0,"message":"Received from 9755","date":"date"},{"transaction_amount":300.0,"message":"Sent to 9755","date":"date"}]}
+[DEBUG] 2022-03-09 13:28:34.573 [main] TransactionController - Transaction successful : 7354 to 9755 amount : 500.0
+[DEBUG] 2022-03-09 13:28:34.812 [main] WalletController - Wallet created by phone Number : 9090
+[DEBUG] 2022-03-09 13:28:34.859 [main] WalletController - User successfully logged out with phoneNumber : 9090
+[INFO ] 2022-03-11 12:45:07.316 [main] WalletDemoProjectApplicationTests - Starting WalletDemoProjectApplicationTests using Java 17.0.2 on PPBNOMBPBT-238.local with PID 10338 (started by sanjay.shakya in /Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test)
+[DEBUG] 2022-03-11 12:45:07.319 [main] WalletDemoProjectApplicationTests - Running with Spring Boot v2.6.3, Spring v5.3.15
+[INFO ] 2022-03-11 12:45:07.319 [main] WalletDemoProjectApplicationTests - No active profile set, falling back to default profiles: default
+[INFO ] 2022-03-11 12:45:14.252 [main] WalletDemoProjectApplicationTests - Started WalletDemoProjectApplicationTests in 7.343 seconds (JVM running for 10.116)
+[INFO ] 2022-03-11 12:45:15.189 [main] DemoWalletControllerTest - Starting DemoWalletControllerTest using Java 17.0.2 on PPBNOMBPBT-238.local with PID 10338 (started by sanjay.shakya in /Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test)
+[DEBUG] 2022-03-11 12:45:15.191 [main] DemoWalletControllerTest - Running with Spring Boot v2.6.3, Spring v5.3.15
+[INFO ] 2022-03-11 12:45:15.191 [main] DemoWalletControllerTest - No active profile set, falling back to default profiles: default
+[INFO ] 2022-03-11 12:45:17.074 [main] DemoWalletControllerTest - Started DemoWalletControllerTest in 1.979 seconds (JVM running for 12.938)
+[DEBUG] 2022-03-11 12:45:17.233 [main] TransactionController - Fetching List Of transaction
+[DEBUG] 2022-03-11 12:45:17.340 [main] TransactionController - getting transaction of 7354 [TransactionSummaryData(transaction_amount=500.0, message=Received from 9755, date=date), TransactionSummaryData(transaction_amount=300.0, message=Sent to 9755, date=date)]
+[DEBUG] 2022-03-11 12:45:17.349 [main] DemoWalletControllerTest - {"Status":"Retrieval of Data is successful","Transactions":[{"transaction_amount":500.0,"message":"Received from 9755","date":"date"},{"transaction_amount":300.0,"message":"Sent to 9755","date":"date"}]}
+[DEBUG] 2022-03-11 12:45:17.401 [main] TransactionController - Transaction successful : 7354 to 9755 amount : 500.0
+[DEBUG] 2022-03-11 12:45:17.579 [main] WalletController - Wallet created by phone Number : 9090
+[DEBUG] 2022-03-11 12:45:17.640 [main] WalletController - User successfully logged out with phoneNumber : 9090
+[INFO ] 2022-03-15 17:40:05.390 [main] WalletDemoProjectApplication - Starting WalletDemoProjectApplication using Java 17.0.2 on PPBNOMBPBT-238.local with PID 7458 (/Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test/target/classes started by sanjay.shakya in /Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test)
+[DEBUG] 2022-03-15 17:40:05.406 [main] WalletDemoProjectApplication - Running with Spring Boot v2.6.3, Spring v5.3.15
+[INFO ] 2022-03-15 17:40:05.407 [main] WalletDemoProjectApplication - No active profile set, falling back to default profiles: default
+[DEBUG] 2022-03-15 17:40:10.317 [main] JWTFilter - Filter 'JWTFilter' configured for use
+[INFO ] 2022-03-15 17:40:11.570 [main] WalletDemoProjectApplication - Started WalletDemoProjectApplication in 6.892 seconds (JVM running for 8.698)
+[INFO ] 2022-03-15 17:43:00.697 [http-nio-9090-exec-2] WalletController - token generated with phoneNumber 222 token : eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyMjIiLCJleHAiOjE2NDczODIzODAsImlhdCI6MTY0NzM0NjM4MH0._659bOLJGJtmn68IwseJX6w4-B-nbcyVzWoje7SYhjU
+[INFO ] 2022-03-15 17:48:26.905 [main] WalletDemoProjectApplication - Starting WalletDemoProjectApplication using Java 17.0.2 on PPBNOMBPBT-238.local with PID 7882 (/Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test/target/classes started by sanjay.shakya in /Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test)
+[DEBUG] 2022-03-15 17:48:26.914 [main] WalletDemoProjectApplication - Running with Spring Boot v2.6.3, Spring v5.3.15
+[INFO ] 2022-03-15 17:48:26.914 [main] WalletDemoProjectApplication - No active profile set, falling back to default profiles: default
+[DEBUG] 2022-03-15 17:48:31.520 [main] JWTFilter - Filter 'JWTFilter' configured for use
+[INFO ] 2022-03-15 17:48:33.022 [main] WalletDemoProjectApplication - Started WalletDemoProjectApplication in 6.638 seconds (JVM running for 8.088)
+[INFO ] 2022-03-15 17:49:37.027 [main] WalletDemoProjectApplication - Starting WalletDemoProjectApplication using Java 17.0.2 on PPBNOMBPBT-238.local with PID 7941 (/Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test/target/classes started by sanjay.shakya in /Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test)
+[DEBUG] 2022-03-15 17:49:37.040 [main] WalletDemoProjectApplication - Running with Spring Boot v2.6.3, Spring v5.3.15
+[INFO ] 2022-03-15 17:49:37.041 [main] WalletDemoProjectApplication - No active profile set, falling back to default profiles: default
+[DEBUG] 2022-03-15 17:49:41.377 [main] JWTFilter - Filter 'JWTFilter' configured for use
+[INFO ] 2022-03-15 17:49:42.724 [main] WalletDemoProjectApplication - Started WalletDemoProjectApplication in 6.259 seconds (JVM running for 7.453)
+[INFO ] 2022-03-15 18:07:13.437 [main] WalletDemoProjectApplication - Starting WalletDemoProjectApplication using Java 17.0.2 on PPBNOMBPBT-238.local with PID 10069 (/Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test/target/classes started by sanjay.shakya in /Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test)
+[DEBUG] 2022-03-15 18:07:13.453 [main] WalletDemoProjectApplication - Running with Spring Boot v2.6.3, Spring v5.3.15
+[INFO ] 2022-03-15 18:07:13.454 [main] WalletDemoProjectApplication - No active profile set, falling back to default profiles: default
+[DEBUG] 2022-03-15 18:07:17.966 [main] JWTFilter - Filter 'JWTFilter' configured for use
+[INFO ] 2022-03-15 18:07:19.285 [main] WalletDemoProjectApplication - Started WalletDemoProjectApplication in 6.385 seconds (JVM running for 7.559)
+[DEBUG] 2022-03-15 18:09:33.153 [http-nio-9090-exec-2] WalletController - Wallet created by phone Number : 444
+[INFO ] 2022-03-15 18:20:37.868 [main] WalletDemoProjectApplication - Starting WalletDemoProjectApplication using Java 17.0.2 on PPBNOMBPBT-238.local with PID 10687 (/Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test/target/classes started by sanjay.shakya in /Users/sanjay.shakya/Downloads/Milestone-2-Wallet-Management-Test)
+[DEBUG] 2022-03-15 18:20:37.879 [main] WalletDemoProjectApplication - Running with Spring Boot v2.6.3, Spring v5.3.15
+[INFO ] 2022-03-15 18:20:37.880 [main] WalletDemoProjectApplication - No active profile set, falling back to default profiles: default
+[DEBUG] 2022-03-15 18:20:42.676 [main] JWTFilter - Filter 'JWTFilter' configured for use
+[INFO ] 2022-03-15 18:20:44.073 [main] WalletDemoProjectApplication - Started WalletDemoProjectApplication in 6.735 seconds (JVM running for 8.187)
+[DEBUG] 2022-03-15 18:22:10.836 [http-nio-9090-exec-2] WalletController - Wallet created by phone Number : 666
+[INFO ] 2022-03-15 18:22:10.912 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] Listener - Consumed Json Message : WalletData{phoneNumber='666', accountBalance=600.0, status='Active', password='pass666', date='18:22:10 15-03-2022'}

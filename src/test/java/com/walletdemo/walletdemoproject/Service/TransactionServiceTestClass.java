@@ -5,17 +5,21 @@ import com.walletdemo.walletdemoproject.Model.TransactionData;
 import com.walletdemo.walletdemoproject.Model.WalletData;
 import com.walletdemo.walletdemoproject.Repository.TransactionRepo;
 import com.walletdemo.walletdemoproject.Repository.WalletRepo;
+import com.walletdemo.walletdemoproject.ResponseClass.TransactionResponse;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -26,6 +30,9 @@ public class TransactionServiceTestClass {
 
     @Mock
     private WalletRepo walletRepo;
+
+    @Mock
+    private WalletService walletService;
 
     @InjectMocks
     private TransactionService transactionService;

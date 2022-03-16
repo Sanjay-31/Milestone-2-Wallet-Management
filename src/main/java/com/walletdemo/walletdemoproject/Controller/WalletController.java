@@ -13,11 +13,13 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 public class WalletController {
@@ -27,6 +29,11 @@ public class WalletController {
     WalletService walletService;
     @Autowired
     WalletRepo walletRepo;
+
+    @Autowired
+    KafkaTemplate<String, Object>kafkaTemplate;
+    String TOPIC="Kafka_MileStone_2";
+
 
     @Autowired
      private AuthenticationManager authenticationManager;
@@ -71,9 +78,10 @@ public class WalletController {
         DateResponse dateResponse=new DateResponse();
         String date=dateResponse.getCurrentDateTime();
         ww.setDate(date);
-            WalletData newW=walletService.addWallet(ww);
-            logger.debug("Wallet created by phone Number : "+ww.getPhoneNumber());
-            return walletResponse.getResponse(newW,"Wallet Created Successfully ",HttpStatus.CREATED);
+            WalletData w=walletService.addWallet(ww);
+             kafkaTemplate.send(TOPIC,w);
+            logger.debug("Wallet created by phone Number : "+w.getPhoneNumber());
+            return walletResponse.getResponse(w,"Wallet Created Successfully ",HttpStatus.CREATED);
     }
     @DeleteMapping("/wallet/{phoneNumber}")
     public ResponseEntity<Object> delete(@PathVariable String phoneNumber) {

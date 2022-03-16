@@ -74,10 +74,10 @@ public class TransactionController {
                 logger.error("Insufficient Balance , id : "+t.getSender());
                 return transactionResponse.getPostResponse(t,"Transaction Unsuccessful,Insufficient Balance",HttpStatus.BAD_REQUEST);
             }
-                transactionService.createtransaction(t);
-                logger.debug("Transaction successful : "+t.getSender()+" to "+t.getReceiver()+" amount : "+t.getAmount());
-                return transactionResponse.getPostResponse(t,"Transaction Successful",HttpStatus.CREATED);
+            transactionService.createtransaction(t);
+            logger.debug("Transaction successful : "+t.getSender()+" to "+t.getReceiver()+" amount : "+t.getAmount());
+            return transactionResponse.getPostResponse(t,"Transaction Successful",HttpStatus.CREATED);
         }
-         return transactionResponse.getPostResponse(t,"Transaction Unsuccessful,User does not exist",HttpStatus.NOT_FOUND);
+        return transactionResponse.getPostResponse(t,"Transaction Unsuccessful,User does not exist",HttpStatus.NOT_FOUND);
     }
 }
